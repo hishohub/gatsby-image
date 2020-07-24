@@ -5,12 +5,15 @@
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
-    "build": "gatsby build",
+    "start": "run-s gatsby-develop",
+    "build": "run-s gatsby-clean gatsby-build",
+    "serve": "run-s build gatsby-serve",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "gatsby-develop": "gatsby develop -o -H 0.0.0.0",
+    "gatsby-serve": "gatsby serve -o -H 0.0.0.0",
+    "gatsby-build": "gatsby build",
+    "gatsby-clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
