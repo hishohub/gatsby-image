@@ -3,7 +3,7 @@
   "private": true,
   "description": "A simplified bare-bones starter for Gatsby",
   "version": "0.1.0",
-  "license": "0BSD",
+  "license": "MIT",
   "scripts": {
     "start": "run-s gatsby-develop",
     "build": "run-s gatsby-clean gatsby-build",
