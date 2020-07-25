@@ -39,11 +39,10 @@ const Picture = (props) => {
     }
   `)
 
-  function addPrefixForRelativePath(relativePath,prefix='sp_') {
-    const splitPathArray = relativePath.split("/").map((item, index, self) => {
-      const lastIndex = self.length - 1
-      return index !== lastIndex ? item : `${prefix}${item}`
-    })
+  function addPrefixForRelativePath(relativePath, prefix = "sp_") {
+    const splitPathArray = relativePath.split("/")
+    const lastIndex = splitPathArray.length - 1
+    splitPathArray[lastIndex] = `${prefix}${splitPathArray[lastIndex]}`
     return splitPathArray.join("/")
   }
 
