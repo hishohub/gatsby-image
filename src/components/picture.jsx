@@ -9,10 +9,10 @@ import Img from "gatsby-image"
 //   className?: string
 // }
 
-const Picture = (props) => {
+const Picture = props => {
   const data = useStaticQuery(graphql`
     query allImageFileQuery {
-      desktopImages: allFile(filter: {ext: {regex: "/(png|jpg)/"}}) {
+      desktopImages: allFile(filter: { ext: { regex: "/(png|jpg)/" } }) {
         edges {
           node {
             relativePath
@@ -24,7 +24,12 @@ const Picture = (props) => {
           }
         }
       }
-      mobileImages: allFile(filter: {ext: {regex: "/(png|jpg)/"}, relativePath: {regex: "/sp_/"}}) {
+      mobileImages: allFile(
+        filter: {
+          ext: { regex: "/(png|jpg)/" }
+          relativePath: { regex: "/sp_/" }
+        }
+      ) {
         edges {
           node {
             relativePath
@@ -49,17 +54,21 @@ const Picture = (props) => {
   const desktopImageRelativePath = props.relativePath
   const mobileImageRelativePath = addPrefixForRelativePath(props.relativePath)
 
-  const desktopImages = data.desktopImages.edges.find(n => n.node.relativePath === desktopImageRelativePath)?.node.childImageSharp?.fluid
-  const mobileImages = data.mobileImages.edges.find(n => n.node.relativePath === mobileImageRelativePath)?.node.childImageSharp?.fluid
+  const desktopImages = data.desktopImages.edges.find(
+    n => n.node.relativePath === desktopImageRelativePath
+  )?.node.childImageSharp?.fluid
+  const mobileImages = data.mobileImages.edges.find(
+    n => n.node.relativePath === mobileImageRelativePath
+  )?.node.childImageSharp?.fluid
 
   const imageSources = mobileImages
     ? [
-      mobileImages,
-      {
-        ...desktopImages,
-        media: `(min-width: 1000px)`,
-      },
-    ]
+        mobileImages,
+        {
+          ...desktopImages,
+          media: `(min-width: 1000px)`,
+        },
+      ]
     : desktopImages
 
   return (
@@ -73,14 +82,18 @@ const Picture = (props) => {
         />
       ) : (
         <div>
-          <span style={{color:"red"}}>
-            エラー<span style={{fontWeight: "bold"}}>"{props.relativePath}"</span>
+          <span style={{ color: "red" }}>
+            エラー
+            <span style={{ fontWeight: "bold" }}>"{props.relativePath}"</span>
             は見つけられませんでした。
           </span>
           <br />
-          screenshot.png<br />
-          または<br />
-          test1/screenshot.png<br />
+          screenshot.png
+          <br />
+          または
+          <br />
+          test1/screenshot.png
+          <br />
           の様に指定してください。
         </div>
       )}
